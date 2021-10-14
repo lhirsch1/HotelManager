@@ -1,11 +1,9 @@
 import React, {useState, useEffect} from "react"
+import {MainView} from "./Components/mainView"
 import './App.css';
 
 //store company in state
 
-const [companyState, setCompanyState] = useState()
-const [guestState, setGuestState] = useState()
-const [messageState, setMessageState] = useState()
 
 //function get companys/guests to populate cards
 
@@ -20,7 +18,7 @@ function App() {
        <h1>Hotel Manager</h1>
       </header>
       <body>
-
+        <MainView></MainView>
       </body>
 
     </div>
