@@ -36,8 +36,8 @@ export const MainView = (props) => {
 
   // this use effect handles when columns are populated
   useEffect(() => {
-    console.log("selected state changed", selectedState);
     if (selectedState.company && !selectedState.guest) {
+        setMessageState(null)
       let companyGuests = guestState.filter((guest) => {
         return guest.reservation.hotel === selectedState.company;
       });
