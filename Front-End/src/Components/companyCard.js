@@ -5,8 +5,8 @@ export const CompanyCard = ({idx, company, setSelectedState, selectedState}) => 
     // console.log('key ', idx)
 
     const handleClick = (id) => {
-        setSelectedState({"company":id, "guest":null})
-
+        console.log('company click ', company)
+        setSelectedState({"company":company, "guest":null})
     }
     
     return(

@@ -39,7 +39,7 @@ export const MainView = (props) => {
     if (selectedState.company && !selectedState.guest) {
         setMessageState(null)
       let companyGuests = guestState.filter((guest) => {
-        return guest.reservation.hotel === selectedState.company;
+        return guest.reservation.hotel === selectedState.company.id;
       });
       console.log("company guests ", companyGuests);
       setCompanyGuestState(companyGuests);
