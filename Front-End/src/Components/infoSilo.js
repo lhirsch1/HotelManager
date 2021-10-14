@@ -5,7 +5,7 @@ import { MessageCard } from "./messageCard";
 import '../App.css';
 
 export const InfoSilo = ({ allCompanies, allGuests, allMessages , setSelectedState, selectedState}) => {
-  if (allCompanies && allCompanies.length >= 1) {
+  if (allCompanies) {
     return (
       <div className={"infoSilo"}>
         <>
@@ -19,7 +19,7 @@ export const InfoSilo = ({ allCompanies, allGuests, allMessages , setSelectedSta
     );
   } 
   
-  else if (allGuests && allGuests.length >= 1) {
+  else if (allGuests) {
     console.log("all guests ", allGuests);
     return (
       <div className={"infoSilo"}>
@@ -35,9 +35,10 @@ export const InfoSilo = ({ allCompanies, allGuests, allMessages , setSelectedSta
   } 
 
   
-  else if (allMessages && allMessages.length >= 1) {
+  else if (allMessages) {
       console.log('silo mess', allMessages);
       return (
+          <>
     <div className={"infoSilo"}>
         <>
           {allMessages !== undefined
@@ -47,7 +48,10 @@ export const InfoSilo = ({ allCompanies, allGuests, allMessages , setSelectedSta
               })
             : null}
         </>
+        
       </div>
+      <button>Send New Message</button>
+      </>
       )
   } 
 
