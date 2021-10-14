@@ -36,15 +36,12 @@ export const MainView = (props) => {
   useEffect(() => {
     console.log('selected state changed', selectedState)
     if(selectedState.company && !selectedState.guest){
-        // console.log('company selected no guests ', selectedState)
-        // console.log('guest list ', guests)
+
         let companyGuests = guestState.filter((guest)=> {
             return guest.reservation.hotel === selectedState.company
         });
         console.log('company guests ', companyGuests)
         setCompanyGuestState(companyGuests)
-     
-
     }
     else if(selectedState.company && selectedState.guest){
         console.log('select populated', selectedState)
@@ -64,7 +61,7 @@ export const MainView = (props) => {
         </Col>
         <Col lg={4}>
          <h2>Click to select a guest</h2>
-          <InfoSilo allGuests={companyGuestState} setSelectedState={setSelectedState} />
+          <InfoSilo allGuests={companyGuestState} setSelectedState={setSelectedState} selectedState={selectedState} />
         </Col>
         <Col lg={4}>
           <InfoSilo allMessages={messageState}/>

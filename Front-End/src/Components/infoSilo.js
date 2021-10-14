@@ -25,7 +25,7 @@ export const InfoSilo = ({ allCompanies, allGuests, allMessages , setSelectedSta
         <>
           {allGuests !== undefined
             ? allGuests.map((guest, idx) => {
-                return <GuestCard idx={idx} guest={guest} />;
+                return <GuestCard idx={idx} guest={guest} setSelectedState={setSelectedState} selectedState={selectedState}/>;
               })
             : null}
         </>
