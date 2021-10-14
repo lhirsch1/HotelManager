@@ -3,15 +3,14 @@ import { CompanyCard } from "./companyCard";
 import { GuestCard } from "./guestCard";
 import '../App.css';
 
-export const InfoSilo = ({ allCompanies, allGuests, allMessages }) => {
+export const InfoSilo = ({ allCompanies, allGuests, allMessages , setSelectedState, selectedState}) => {
   if (allCompanies && allCompanies.length >= 1) {
-    console.log(" all companies ", allCompanies);
     return (
       <div className={"infoSilo"}>
         <>
           {allCompanies !== undefined
             ? allCompanies.map((company, idx) => {
-                return <CompanyCard idx={idx} company={company} />;
+                return <CompanyCard idx={idx} company={company} setSelectedState={setSelectedState} selectedState={selectedState} />;
               })
             : null}
         </>
@@ -32,11 +31,13 @@ export const InfoSilo = ({ allCompanies, allGuests, allMessages }) => {
         </>
       </div>
     );
-  } else if (allMessages) {
-    allMessages.map((message) => {
-      return <div>Message: {message.body}</div>;
-    });
-  } else {
+  } 
+//   else if (allMessages) {
+//     allMessages.map((message) => {
+//       return <div>Message: {message.body}</div>;
+//     });
+//   } 
+  else {
     return <div>howdy</div>;
   }
 };
