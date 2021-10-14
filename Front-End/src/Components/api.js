@@ -2,12 +2,13 @@
 
 
 
-const api = {
+export const api = {
 
-    baseURL: "http://localhost:8080",
+    baseURL: "http://localhost:8000",
 
     //get all takes in table and returns all results 
     getAll: async (table) =>{
+
         const data = await fetch(`${api.baseURL}/${table}`, {
             method:"GET",
             headers: {
