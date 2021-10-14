@@ -10,7 +10,10 @@ export const MainView = (props) => {
   const [guestState, setGuestState] = useState();
   const [companyGuestState, setCompanyGuestState] = useState();
   const [messageState, setMessageState] = useState();
-  const [selectedState, setSelectedState] = useState({"company": null, "guest":null});
+  const [selectedState, setSelectedState] = useState({
+    company: null,
+    guest: null,
+  });
   const dataCompanies = api.getAll("companies");
   console.log(dataCompanies);
 
@@ -25,46 +28,59 @@ export const MainView = (props) => {
     });
     api.getAll("guests").then((results) => {
       console.log("resultsguest ", results);
-    setGuestState(results)
+      setGuestState(results);
     });
   }, []);
 
-  useEffect(() => {}, [companyState, guestState]);
-
+  useEffect(() => {}, [companyState, guestState, messageState]);
 
   // this use effect handles when columns are populated
   useEffect(() => {
-    console.log('selected state changed', selectedState)
-    if(selectedState.company && !selectedState.guest){
-
-        let companyGuests = guestState.filter((guest)=> {
-            return guest.reservation.hotel === selectedState.company
-        });
-        console.log('company guests ', companyGuests)
-        setCompanyGuestState(companyGuests)
+    console.log("selected state changed", selectedState);
+    if (selectedState.company && !selectedState.guest) {
+      let companyGuests = guestState.filter((guest) => {
+        return guest.reservation.hotel === selectedState.company;
+      });
+      console.log("company guests ", companyGuests);
+      setCompanyGuestState(companyGuests);
+    } else if (selectedState.company && selectedState.guest) {
+      console.log("select populated", selectedState);
+      //if has messages, populate state
+      //no messages, prompt to make
+      api.getOne("messages", selectedState.guest).then((results) => {
+        setMessageState(results);
+      });
+    } else {
+      console.log("no selected ", selectedState);
     }
-    else if(selectedState.company && selectedState.guest){
-        console.log('select populated', selectedState)
-        api.getOne('messages', selectedState.guest)
-    }
-    else{
-        console.log('no selected ', selectedState)
-    }
-  },[selectedState])
+  }, [selectedState]);
 
   return (
     <Container>
+        <Row>
+            <Col><h2>Click to select a company</h2></Col>
+            <Col><h2>Click to select a guest</h2></Col>
+            <Col><h2>Message History</h2></Col>
+        </Row>
       <Row>
         <Col lg={4}>
-            <h2>Click to select a company</h2>
-          <InfoSilo allCompanies={companyState} setSelectedState={setSelectedState} selectedState={selectedState} />
+          
+          <InfoSilo
+            allCompanies={companyState}
+            setSelectedState={setSelectedState}
+            selectedState={selectedState}
+          />
         </Col>
         <Col lg={4}>
-         <h2>Click to select a guest</h2>
-          <InfoSilo allGuests={companyGuestState} setSelectedState={setSelectedState} selectedState={selectedState} />
+          
+          <InfoSilo
+            allGuests={companyGuestState}
+            setSelectedState={setSelectedState}
+            selectedState={selectedState}
+          />
         </Col>
         <Col lg={4}>
-          <InfoSilo allMessages={messageState}/>
+          <InfoSilo allMessages={messageState} />
         </Col>
       </Row>
     </Container>
