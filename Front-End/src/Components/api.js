@@ -31,7 +31,7 @@ export const api = {
 
     //used to get a user's messages
     getOne: async (table, id) =>{
-        const data = await fetch(`${api.baseURL}/${table}/${id}`, {
+        const data = await fetch(`${api.baseURL}/${table}/?userId=${id}`, {
             method:"GET",
             headers: {
                 "Content-Type": "application/json",
