@@ -17,8 +17,8 @@ export const api = {
     },
 
     // post is used to update messages and guests tables
-    post: async (table, obj) => {
-        const data = await fetch(`${api.baseURL}/${table}`, {
+    post: async (obj) => {
+        const data = await fetch(`${api.baseURL}/messages`, {
             method:"POST",
             body: JSON.stringify(obj),
             headers: {
