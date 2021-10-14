@@ -1,6 +1,9 @@
 import React, {useState, useEffect} from "react"
 import {InfoSilo} from "./infoSilo"
 import {api} from "./api"
+import Container from "react-bootstrap/Container"
+import Row from "react-bootstrap/Row"
+import Col from "react-bootstrap/Col"
 
 
 export const MainView = (props) => {
@@ -37,13 +40,17 @@ useEffect(()=>{
 
 
 return (
-    <div>
-        HOWDY
-        <InfoSilo allCompanies={companyState} />
-        <InfoSilo allGuests={guestState} />
-        <InfoSilo allMessages={messageState} />
 
-    </div>
+    <Container>
+        <Row>
+            <Col lg={4}>
+            <InfoSilo allCompanies={companyState} />
+            </Col>
+            <Col lg={4}><InfoSilo allGuests={guestState} /></Col>
+            <Col lg={4}><InfoSilo allMessages={messageState} /></Col>
+        </Row>
+    </Container>
+
 )
 
 }
