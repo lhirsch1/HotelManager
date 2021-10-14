@@ -1,7 +1,4 @@
 
-
-
-
 export const api = {
 
     baseURL: "http://localhost:8000",
@@ -43,5 +40,4 @@ export const api = {
         })
         return data.json()
     },
-
 }
