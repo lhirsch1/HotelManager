@@ -29,6 +29,18 @@ const api = {
             }
         })
         return data.json()
-    }
+    },
+
+    //used to get a user's messages
+    getOne: async (table, id) =>{
+        const data = await fetch(`${api.baseURL}/${table}/${id}`, {
+            method:"GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            }
+        })
+        return data.json()
+    },
 
 }
