@@ -31,7 +31,4 @@ const api = {
         return data.json()
     }
 
-
-
-
 }
