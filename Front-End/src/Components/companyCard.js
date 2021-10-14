@@ -5,6 +5,7 @@ export const CompanyCard = ({key, company}) => {
     
     return(
         <>
+        <div>hi there</div>
             <h2>{company.company} {company.city}</h2>
             <h3>{company.timezone}</h3>
         </>
