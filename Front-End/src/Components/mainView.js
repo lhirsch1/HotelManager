@@ -1,74 +1,38 @@
 import React, {useState, useEffect} from "react"
 import {InfoSilo} from "./infoSilo"
+import {api} from "./api"
 
 
 export const MainView = (props) => {
 
 const [companyState, setCompanyState] = useState()
-const [guestState, setGuestState] = useState([
-    {
-      "id": 1,
-      "firstName": "Candy",
-      "lastName": "Pace",
-      "reservation": {
-        "roomNumber": 529,
-        "startTimestamp": 1486654792,
-        "endTimestamp": 1486852373
-      }
-    },
-    {
-      "id": 2,
-      "firstName": "Morgan",
-      "lastName": "Porter",
-      "reservation": {
-        "roomNumber": 385,
-        "startTimestamp": 1486612719,
-        "endTimestamp": 1486694720
-      }
-    },
-    {
-      "id": 3,
-      "firstName": "Bridgett",
-      "lastName": "Richard",
-      "reservation": {
-        "roomNumber": 141,
-        "startTimestamp": 1486520344,
-        "endTimestamp": 1486769616
-      }
-    },
-    {
-      "id": 4,
-      "firstName": "Melisa",
-      "lastName": "Preston",
-      "reservation": {
-        "roomNumber": 417,
-        "startTimestamp": 1486614763,
-        "endTimestamp": 1486832543
-      }
-    },
-    {
-      "id": 5,
-      "firstName": "Latoya",
-      "lastName": "Herrera",
-      "reservation": {
-        "roomNumber": 194,
-        "startTimestamp": 1486605110,
-        "endTimestamp": 1486785126
-      }
-    },
-    {
-      "id": 6,
-      "firstName": "Hewitt",
-      "lastName": "Hopper",
-      "reservation": {
-        "roomNumber": 349,
-        "startTimestamp": 1486660637,
-        "endTimestamp": 1486788273
-      }
-    }
-  ]
-  )
+const [guestState, setGuestState] = useState()
 const [messageState, setMessageState] = useState()
+const dataCompanies = api.getAll("companies")
+console.log(dataCompanies)
+
+
+useEffect(() => {
+    api.getAll('companies').then(
+        results => {
+            console.log('results', results)
+            setCompanyState(results)
+        }
+    )
+    api.getAll("guests").then(
+        results => {
+            console.log('resultsguest ', results)
+            setGuestState(results)
+        }
+    )
+},[])
+
+useEffect(()=>{
+
+},[companyState, guestState, messageState])
+
+
+
 
 
 

@@ -1,27 +1,26 @@
 //for each object generates appropriate card
-import CompanyCard from "./companyCard"
+import {CompanyCard} from "./companyCard"
 import {GuestCard} from "./guestCard"
 
 
 export const InfoSilo = ({allCompanies, allGuests, allMessages}) => {
     
-    if(allCompanies){
-        allCompanies.map((company) =>{
-            return (
-                <div>
-                    Company: {company.company} 
-                </div>
-            )
-        })
+    if(allCompanies && allCompanies.length >= 1){
+        console.log(' all companies ', allCompanies)
+        return (
+            <>
+                HI THERE
+                {allCompanies !== undefined ? (
+                    allCompanies.map((company,idx) =>{
+                        return <CompanyCard idx={idx} company={company} />
+                    })
+                ) :null 
+                }
+            </>
+        )
     }
     else if(allGuests && allGuests.length >= 1){
-        console.log('guests ', allGuests)
-        // return (
-        //     <div>
-        //         guests
-        //     </div>
-        // )
-        
+        console.log('all guests ', allGuests)
         return (
             <>
                 {allGuests !== undefined ? (
