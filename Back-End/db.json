@@ -123,6 +123,22 @@
       "body": "Good afternoon Candy, and welcome to The Grand Budapest Hotel! 529 is now ready you. Enjoy your stay, and let us know if you need anything.",
       "dateTime": 1634232820,
       "id": 19
+    },
+    {
+      "userId": 1,
+      "companyId": 2,
+      "type": "signout",
+      "body": "Good afternoon Candy! We hope that you are enjoying your stay with us at The Grand Budapest Hotel! Sign out time for 529 is at seven. Enjoy the rest of your stay, and let us know if you need anything.",
+      "dateTime": 1634232820,
+      "id": 20
+    },
+    {
+      "userId": 5,
+      "companyId": 1,
+      "type": "signout",
+      "body": "Good afternoon Latoya! We hope that you are enjoying your stay with us at Hotel California! Sign out time for 194 is at seven. Enjoy the rest of your stay, and let us know if you need anything.",
+      "dateTime": 1634232820,
+      "id": 21
     }
   ]
 }
