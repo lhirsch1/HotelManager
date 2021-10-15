@@ -44,10 +44,9 @@ export const MainView = (props) => {
       console.log("company guests ", companyGuests);
       setCompanyGuestState(companyGuests);
     } else if (selectedState.company && selectedState.guest) {
-      console.log("select populated", selectedState);
       //if has messages, populate state
       //no messages, prompt to make
-      api.getOne("messages", selectedState.guest).then((results) => {
+      api.getOne("messages", selectedState.guest.id).then((results) => {
         setMessageState(results);
       });
     } else {
@@ -80,7 +79,10 @@ export const MainView = (props) => {
           />
         </Col>
         <Col lg={4}>
-          <InfoSilo allMessages={messageState} />
+          <InfoSilo allMessages={messageState}
+          setSelectedState={setSelectedState}
+          selectedState={selectedState} />
+          
         </Col>
       </Row>
     </Container>
