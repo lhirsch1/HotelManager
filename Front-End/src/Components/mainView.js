@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { InfoSilo } from "./infoSilo";
-import { api } from "./api";
-import { AddGuest } from "./addGuest";
+import { api } from "./util/api";
+import { AddGuest } from "./guest/addGuest";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -98,6 +98,7 @@ export const MainView = (props) => {
         <Col lg={4}>
           <InfoSilo
             allMessages={messageState}
+            setMessageState={setMessageState}
             setSelectedState={setSelectedState}
             selectedState={selectedState}
           />
