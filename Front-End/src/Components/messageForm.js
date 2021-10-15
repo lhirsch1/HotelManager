@@ -13,39 +13,32 @@ export const MessageForm = ({selectedState, setSelectedState}) => {
 
     const [msgType, setMsgType] = useState();
     const [msgBody, setMsgBody] = useState();
-    console.log('message type ', msgType)
-    console.log('msg', msgBody)
+
+
+    let daytime = TimeConverter(selectedState.company.timezone)
+    
 
     useEffect(()=>{
     let firstName = selectedState.guest.firstName;
     let company = selectedState.company.company;
-    let timePhrase = selectedState.guest.firstName;
+    let timePhrase = daytime;
     let roomNumber = selectedState.guest.reservation.roomNumber
-    // let welcomeMsg =  `Good afternoon ${firstName}, and welcome to ${company}! Room ${roomNumber} is now ready for you. Enjoy your stay, and let us know if you need anything.`
     //messagetype, time, firstname, otel, roomNumber, signOutTime, customMessage
-    let generatedMsg = MessageTemplate(msgType,'afternoon', firstName, company,roomNumber, 'noon', '' )   
+    let generatedMsg = MessageTemplate(msgType, daytime, firstName, company,roomNumber, 'noon', '' )   
     setMsgBody(generatedMsg)
-
-
 
     },[msgType])
 
-    // let timePhrase = timeConverter.getTimePhrase(company.timeZone)
-
-//    let welcomeMsg =  `Good ${timePhrase} ${guest.name}, and welcome to ${company.company}! Room ${guest.reservation.roomNumber} is now ready for you. Enjoy your stay, and let us know if you need anything.`
-//    let signOutMsg =  `Good ${timePhrase} ${guest.name}, we appreciate you choosing ${company.company}! Sign out time for your room is at ${signOutTime}.  Enjoy the rest of your stay, and let us know if you need anything.`
-//    let thankYouMsg =  `Good ${timePhrase} ${guest.name}. We hope that you enjoyed your stay ${company.company}! We hope to see you again in the future.`
-//    let customMsg = ``
 
   const handleSubmit = (e) => {
       console.log('handleSubmit')
     e.preventDefault()
     console.log('event ', msgBody )
     let msgObj =  {
-        "userId":2,
-        "companyId":3,
-        "type": "thankyou",
-        "body":"hi there",
+        "userId":selectedState.guest.id,
+        "companyId":selectedState.company.id,
+        "type": msgType,
+        "body": msgBody,
         "dateTime":1634232820
     }
 
