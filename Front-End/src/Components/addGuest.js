@@ -3,7 +3,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { api } from "./api";
 
-export const AddGuest = ({ selectedState }) => {
+export const AddGuest = ({ selectedState, setSelectedState }) => {
   //this state is used to conditionally render the form
   const [showState, setShowState] = useState(0);
   //holds info for post
@@ -35,6 +35,7 @@ export const AddGuest = ({ selectedState }) => {
     api.postGuest(newGuest).then((res) => {
       console.log(res);
     });
+    setSelectedState({...selectedState.company, guest:newGuest })
   };
   return (
     <div>
@@ -55,7 +56,7 @@ export const AddGuest = ({ selectedState }) => {
             name="firstName"
             label="First Name"
           ></input>
-          <label for="firstName">First Name</label>
+          <label >First Name</label>
           <br></br>
           <input
             onChange={(e) => {
@@ -65,7 +66,7 @@ export const AddGuest = ({ selectedState }) => {
             name="lastName"
             label="last Name"
           ></input>
-          <label for="lastName">Last Name</label>
+          <label >Last Name</label>
           <br></br>
           <input
             onChange={(e) => {
@@ -78,16 +79,16 @@ export const AddGuest = ({ selectedState }) => {
             name="roomNumber"
             label="Room Number"
           ></input>
-          <label for="roomNumber">Room Number</label>
+          <label>Room Number</label>
           <br></br>
-          <label for="startDate">Start Date</label>
+          <label>Start Date</label>
           <DatePicker
             name="startDate"
             selected={startDateValue}
             onChange={(date) => setStartDateValue(date)}
           />
           <br></br>
-          <label for="endDate">End Date</label>
+          <label>End Date</label>
           <DatePicker
             selected={endDateValue}
             onChange={(date) => setEndDateValue(date)}

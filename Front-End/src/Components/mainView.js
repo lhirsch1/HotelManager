@@ -85,7 +85,7 @@ export const MainView = (props) => {
         </Col>
         <Col lg={4}>
            <> 
-           {selectedState.company ? <AddGuest selectedState={selectedState}/> : <> </>}
+           {selectedState.company ? <AddGuest selectedState={selectedState} setSelectedState={setSelectedState}/> : <> </>}
         <br></br>
         <br></br>
           <InfoSilo
