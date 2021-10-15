@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { InfoSilo } from "./infoSilo";
 import { api } from "./api";
+import { AddGuest } from "./addGuest";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -37,7 +38,7 @@ export const MainView = (props) => {
   // this use effect handles when columns are populated
   useEffect(() => {
     if (selectedState.company && !selectedState.guest) {
-        setMessageState(null)
+      setMessageState(null);
       let companyGuests = guestState.filter((guest) => {
         return guest.reservation.hotel === selectedState.company.id;
       });
@@ -56,14 +57,26 @@ export const MainView = (props) => {
 
   return (
     <Container>
-        <Row>
-            <Col><h2>Click to select a company</h2></Col>
-            <Col><h2>Click to select a guest</h2></Col>
-            <Col><h2>Message History</h2></Col>
-        </Row>
+      <Row>
+        <Col>
+          <h2>Click to select a company</h2>
+        </Col>
+        <Col>
+        <>
+            {selectedState.company ? <h2>Guests of {selectedState.company.company}</h2> : <h2>Select a company to see guests</h2> }
+        </>
+          
+        </Col>
+        <Col>
+            <>
+                {selectedState.guest ? <h2>Message History for {selectedState.guest.firstName} {selectedState.guest.lastName} </h2>
+                : <h2>Messages</h2>}
+            </>
+          
+        </Col>
+      </Row>
       <Row>
         <Col lg={4}>
-          
           <InfoSilo
             allCompanies={companyState}
             setSelectedState={setSelectedState}
@@ -71,18 +84,23 @@ export const MainView = (props) => {
           />
         </Col>
         <Col lg={4}>
-          
+           <> 
+           {selectedState.company ? <AddGuest selectedState={selectedState}/> : <> </>}
+        <br></br>
+        <br></br>
           <InfoSilo
             allGuests={companyGuestState}
             setSelectedState={setSelectedState}
             selectedState={selectedState}
           />
+          </>
         </Col>
         <Col lg={4}>
-          <InfoSilo allMessages={messageState}
-          setSelectedState={setSelectedState}
-          selectedState={selectedState} />
-          
+          <InfoSilo
+            allMessages={messageState}
+            setSelectedState={setSelectedState}
+            selectedState={selectedState}
+          />
         </Col>
       </Row>
     </Container>
