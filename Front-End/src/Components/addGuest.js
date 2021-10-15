@@ -75,8 +75,10 @@ export const AddGuest = ({allCompanies}) =>{
                 <br></br>
                 <label for="endDate">End Date</label>
                 <DatePicker selected={endDateValue} onChange={date => setEndDateValue(date)} />
-                <label for="startDate">Start Date</label>
+                
                 <input type="submit" />
+                <br></br>
+                <button onClick={e => setShowState(0)}>Cancel Add Guest</button>
             </form> : <> </>}
             
             </div>
